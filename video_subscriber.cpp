@@ -4,6 +4,7 @@
 #include <vector>
 #include <csignal>
 #include <thread>
+#include <condition_variable>
 
 bool running = true;
 std::mutex frame_mutex;
