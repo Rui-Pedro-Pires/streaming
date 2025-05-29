@@ -6,12 +6,6 @@
 #include <thread>
 #include <condition_variable>
 
-bool running = true;
-std::mutex frame_mutex;
-std::condition_variable frame_cv;
-std::queue<cv::Mat> frame_queue;
-bool new_frame = false;
-
 // void signalHandler(int signum) {
 //     std::cout << "Interrupt received, shutting down..." << std::endl;
 //     running = false;
@@ -73,14 +67,12 @@ int main() {
     auto config = zenoh::Config::create_default();
     auto session = zenoh::Session::open(std::move(config));
 
-    auto subscriber = session.declare_subscriber(
-        "test",
-        [](const zenoh::Sample& sample)
-        {
-            std::cout << "Received subscriber" << std::endl;
-        }, zenoh::closures::none);
+    auto publisher = session.declare_publicher(zenoh::KeyExpr("test"));
 
-    while (true) ;
+    while (true) {
+        std::string tes = "test";
+        publisher.put(tes);
+    }
     // // Start subscriber in a background thread, leaving main thread for UI
     // std::thread zenoh_thread(subscriber_thread_function, std::move(session));
 
