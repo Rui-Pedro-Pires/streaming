@@ -67,7 +67,7 @@ int main() {
     auto config = zenoh::Config::create_default();
     auto session = zenoh::Session::open(std::move(config));
 
-    auto publisher = session.declare_publicher(zenoh::KeyExpr("test"));
+    auto publisher = session.declare_publisher(zenoh::KeyExpr("test"));
 
     while (true) {
         std::string tes = "test";

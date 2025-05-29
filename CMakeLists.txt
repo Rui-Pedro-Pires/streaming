@@ -14,3 +14,6 @@ include_directories(${OpenCV_INCLUDE_DIRS})
 
 add_executable(video_subscriber video_subscriber.cpp)
 target_link_libraries(video_subscriber ${OpenCV_LIBS} zenohcxx::zenohc)
+
+add_executable(video_publisher video_publisher.cpp)
+target_link_libraries(video_publisher ${OpenCV_LIBS} zenohcxx::zenohc)
